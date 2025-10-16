@@ -21,6 +21,7 @@ def get_data(filename):
 
 with header:
     st.title("Welcome to Ronald 1st data science project on Streamlit")
+    st.markdown("On computer's large screen? The **Wide mode** is good. Choose from the Settings, the 3 dots on top right.")
 
     
 
