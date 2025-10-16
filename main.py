@@ -71,6 +71,14 @@ st.subheader("Pick-up location ID distribution on the NYC dataset")
 pulocation_dist = pd.DataFrame(taxi_data["PULocationID"].value_counts())
 st.bar_chart(pulocation_dist)
 
+st.subheader("Pivot Table as first attempt to ask: ")
+
+st.markdown(
+        "* **which hours** good for changing shift ?"
+    )
+
+st.image("images/pivotTableRH.png")
+
 with features:
     st.header("The features I created")
 
