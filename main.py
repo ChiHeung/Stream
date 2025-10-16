@@ -74,6 +74,11 @@ with features:
         "* **second feature:** I created this feature because of this .... I calculated using..."
     )
 
+    url = "https://docs.google.com/document/d/1XkQLTE_Ug10nQst58iF4J_8TQ-Ee_9Puhga1qwwcjes/edit?tab=t.0"
+    #st.write("check out this [link](%s)" % url)
+    st.markdown("* **check out this:** for Ronald's research on Random Forest and bagging: [link](%s)" % url)
+
+
 with model_training:
     st.header("Time to train the model")
     st.text(
@@ -109,7 +114,6 @@ regr.fit(X, y)
 prediction = regr.predict(X) #was y wrongly used in Misra tutorial, should be X
 # ref. offical doc at
 # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor.predict
-
 
 disp_col.subheader("Mean absolute error of the model is:")
 disp_col.write(mean_absolute_error(y, prediction))
