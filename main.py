@@ -40,7 +40,9 @@ with dataset:
     # --- Sampling function --- from ChatGPT
 def sample_data(df, sample_frac=0.001):
     """Return a small sample of the full dataset (default 0.1%)."""
-    return df.sample(frac=sample_frac, random_state=42)
+    #return df.sample(frac=sample_frac, random_state=42) ChatGPT problem: fixed 42, then always same sample
+    return df.sample(frac=sample_frac) #Claude solved it, by removing it
+
 
 # User controls
 st.sidebar.header("Controls")
@@ -50,16 +52,21 @@ use_sample = st.sidebar.checkbox("Use sample data (0.1%) for testing", value=Tru
 if use_sample:
     taxi_data = sample_data(taxi_data)
     st.info(f"Running on sample: {len(taxi_data):,} rows ({100*len(taxi_data)/row_count:.2f}% of full dataset)")
+
 else:
     taxi_data = taxi_data
     st.success(f"Running on full dataset: {len(taxi_data):,} rows")
 
 
-
+    # Claude helped added a button for user to download the sample as csv
+st.download_button(
+    label="Download sample data as CSV",
+    data=taxi_data.to_csv(index=False),
+    file_name="sample_data.csv",
+    mime="text/csv"
+)
 
 st.subheader("Pick-up location ID distribution on the NYC dataset")
-
-
 
 pulocation_dist = pd.DataFrame(taxi_data["PULocationID"].value_counts())
 st.bar_chart(pulocation_dist)
